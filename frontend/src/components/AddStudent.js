@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 export default function AddStudent() {
   const [name, setName] = useState("");
@@ -14,7 +15,17 @@ export default function AddStudent() {
       age,
       gender,
     };
-    console.log(newStudent);
+    axios
+      .post("http://localhost:5000/student/add", newStudent)
+      .then(() => {
+        alert("Student Successfully Added");
+        // setName("");
+        // setAge("");
+        // setGender("");
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   return (
